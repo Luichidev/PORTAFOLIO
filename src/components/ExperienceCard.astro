@@ -1,0 +1,22 @@
+---
+interface Props {
+	company: string
+	role: string
+	period: string
+	description: string[]
+}
+
+const { company, role, period, description } = Astro.props
+---
+
+<article class='mb-12'>
+	<div class='flex flex-col md:flex-row md:items-center justify-between mb-4'>
+		<div>
+			<h3 class='text-xl font-semibold text-gray-900 dark:text-white'>{company} / {role}</h3>
+		</div>
+		<time class='text-sm text-gray-500 dark:text-gray-400'>{period}</time>
+	</div>
+	<ul class='text-gray-600 dark:text-gray-400 list-disc list-inside space-y-2'>
+		{description.map((item) => <li>{item}</li>)}
+	</ul>
+</article>
