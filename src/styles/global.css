@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --delay: 1800
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif
+  --color-primary: "#2563eb"
+}
+
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen;
+}
+
+.circle-bg {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.active {
+  @apply bg-blue-600 text-white;
+}
+
+#back-to-top.show {
+  @apply opacity-100 visible;
+}
