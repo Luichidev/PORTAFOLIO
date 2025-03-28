@@ -1,5 +1,5 @@
 # Portafolio Web - Luis Alberto Arana Montaño
-Este es un portafolio web creado con Astro, un generador de sitios estáticos que permite crear páginas web rápidas y optimizadas.
+This is my personal portfolio website, built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). It showcases my projects, skills, and experience as a web developer.
 
 ## 🚀 Project Structure
 
