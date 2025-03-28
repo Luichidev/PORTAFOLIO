@@ -1,0 +1,31 @@
+---
+import { ArrowUp } from 'lucide-astro'
+---
+
+<button id='back-to-top' class='fixed bottom-6 right-6 z-50 p-3 rounded-full bg-blue-600 text-white shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-indigo-700 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50' aria-label='Volver arriba'>
+	<ArrowUp class='w-6 h-6' />
+</button>
+
+<script>
+	const backToTopButton = document.getElementById('back-to-top')
+
+	function toggleBackToTopButton() {
+		if (window.scrollY > 300) {
+			backToTopButton?.classList.add('show')
+		} else {
+			backToTopButton?.classList.remove('show')
+		}
+	}
+
+	backToTopButton?.addEventListener('click', () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		})
+	})
+
+	window.addEventListener('scroll', toggleBackToTopButton)
+
+	// Inicializar
+	toggleBackToTopButton()
+</script>
