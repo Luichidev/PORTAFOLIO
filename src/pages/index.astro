@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro'
+import Navigation from '@/components/Navigation.astro'
+import Hero from '@/components/Hero.astro'
+import ExperienceCard from '@/components/ExperienceCard.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import Badge from '@/components/Badge.astro'
+import Footer from '@/components/Footer.astro'
+import { experiences } from '@/data/experiences'
+import { projects } from '@/data/projects'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Datos de tecnologías
+const badges = ['React', 'Vue', 'Node.js', 'php', 'Wordpress', 'Astro']
 ---
 
-<Layout>
-	<Welcome />
+<Layout title='Portfolio de Luis Alberto - Desarrollador Frontend'>
+	<Navigation />
+
+	<main class='relative z-10 container mx-auto px-4 py-8'>
+		<Hero />
+
+		<!-- Experience Section -->
+		<section id='experience' class='min-h-screen dark:bg-transparent p-8'>
+			<div class='max-w-4xl mx-auto'>
+				<h2 class='text-3xl font-bold mb-8 dark:text-white'>Experiencia</h2>
+				{experiences.map((experience) => <ExperienceCard {...experience} />)}
+			</div>
+		</section>
+
+		<!-- Projects Section -->
+		<section id='projects' class='min-h-screen dark:bg-transparent p-8'>
+			<div class='max-w-4xl mx-auto'>
+				<h2 class='text-3xl font-bold mb-8 dark:text-white'>Proyectos</h2>
+				<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+					{projects.map((project) => <ProjectCard {...project} />)}
+				</div>
+			</div>
+		</section>
+
+		<!-- Technologies & Quote -->
+		<section class='text-center max-w-3xl mx-auto my-20 dark:bg-transparent'>
+			<div class='flex flex-wrap justify-center gap-4 my-8'>
+				{badges.map((badge) => <Badge text={badge} />)}
+			</div>
+			<p class='text-gray-600 dark:text-gray-400 italic'>"Ayudo a Startups y a empresas a establecer una conexión emocional entre sus productos y clientes felices y comprometidos."</p>
+		</section>
+
+		<!-- Footer -->
+		<Footer />
+	</main>
 </Layout>
