@@ -1,0 +1,143 @@
+---
+const menuItems = [
+	{ text: 'Experiencia', href: '#experience' },
+	{ text: 'Proyectos', href: '#projects' },
+	{ text: 'Contáctame', href: 'mailto:luichidev@gmail.com' }
+]
+---
+
+<header class='fixed top-0 z-100 flex items-center justify-center w-full mx-auto mt-2'>
+	<nav class='max-w-4xl mx-auto px-4 py-4 flex justify-between items-center'>
+		<ul class='flex justify-center gap-4'>
+			{
+				menuItems.map((item, index) => (
+					<li>
+						<a href={item.href} class={`text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-primary [&.active]:text-white [&.active]:bg-primary ${index === 0 ? 'active' : ''}`}>
+							{item.text}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<button id='theme-toggle' class='p-2 rounded-full hover:dark:bg-gray-900 transition-colors'>
+			<svg id='sun-icon' class='w-6 h-6 text-gray-600 dark:text-white hidden dark:block' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+				<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'></path>
+			</svg>
+			<svg id='moon-icon' class='w-6 h-6 text-gray-600 dark:text-white block dark:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+				<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'></path>
+			</svg>
+		</button>
+	</nav>
+</header>
+
+<script>
+	const menuLinks = document.querySelectorAll('header nav a')
+	const sections = document.querySelectorAll('section')
+	const themeToggle = document.getElementById('theme-toggle')
+
+	// Function to update active menu item
+	function updateActiveMenuItem(targetLink) {
+		menuLinks.forEach((link) => link.classList.remove('active'))
+		targetLink.classList.add('active')
+	}
+
+	// Function to find the current section based on scroll position
+	function getCurrentSection() {
+		const scrollPosition = window.scrollY
+
+		// Check if we're at the top of the page
+		if (scrollPosition === 0) {
+			return document.querySelector('section')
+		}
+
+		// Find the current section based on scroll position
+		for (const section of sections) {
+			const sectionTop = section.offsetTop - 100 // Adjust for header height
+			const sectionBottom = sectionTop + section.offsetHeight
+
+			if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+				return section
+			}
+		}
+
+		// If we're past all sections, return the last one
+		return sections[sections.length - 1]
+	}
+
+	// Handle click events
+	menuLinks.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			if (link.getAttribute('href') === '#') {
+				e.preventDefault()
+				window.scrollTo({ top: 0, behavior: 'smooth' })
+			}
+			updateActiveMenuItem(link)
+		})
+	})
+
+	// Handle scroll events
+	window.addEventListener('scroll', () => {
+		const currentSection = getCurrentSection()
+		if (currentSection) {
+			const id = currentSection.getAttribute('id') || ''
+			const targetLink = Array.from(menuLinks).find((link) => link.getAttribute('href') === `#${id}` || (id === '' && link.getAttribute('href') === '#'))
+
+			if (targetLink) {
+				updateActiveMenuItem(targetLink)
+			}
+		}
+	})
+
+	// Handle theme toggle
+	themeToggle?.addEventListener('click', () => {
+		document.querySelector('nav').classList.toggle('dark')
+		document.documentElement.classList.toggle('dark')
+		localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+	})
+</script>
+
+<style>
+	nav {
+		background-color: transparent;
+		animation: nav-shadown 1s linear both;
+		animation-timeline: scroll();
+		animation-range: 0 200px;
+	}
+
+	nav.dark {
+		background-color: transparent;
+		animation: nav-dark-shadown 1s linear both;
+		animation-timeline: scroll();
+		animation-range: 0 200px;
+	}
+
+	@keyframes nav-shadown {
+		0% {
+			/* @apply dark:bg-gray-800/0 bg-white/0; */
+			background-color: transparent;
+			color: black;
+		}
+		to {
+			/* @apply shadow-lg ring-1 backdrop-blur ring-white/10; */
+			background-color: white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(10px);
+			border-radius: 9999px;
+		}
+	}
+
+	@keyframes nav-dark-shadown {
+		0% {
+			/* @apply dark:bg-gray-800/0 bg-white/0; */
+			background-color: transparent;
+			color: white;
+		}
+		to {
+			/* @apply shadow-lg ring-1 backdrop-blur ring-white/10; */
+			background-color: #101828;
+			box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			border-radius: 9999px;
+		}
+	}
+</style>
