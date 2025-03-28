@@ -1,0 +1,23 @@
+---
+import { socialLinks } from '@/data/socialLinks'
+---
+
+<section id='home' class='min-h-100 flex flex-col items-center justify-center text-center p-4 dark:bg-transparent'>
+	<div class='max-w-4xl mx-auto'>
+		<h1 class='text-4xl md:text-6xl font-bold mb-4 dark:text-gray-400'>
+			Soy <span class='text-blue-600'>Luis Alberto</span>
+		</h1>
+		<p class='text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4'>Desarrollador Frontend/Q&A Engineer</p>
+		<p class='text-sm md:text-xl text-gray-600 dark:text-gray-400 mb-8'>+10 años de experiencia. <span>Ingeniero Informático</span> de Barcelona</p>
+		<div class='flex flex-wrap justify-center gap-4 mt-8'>
+			{
+				socialLinks.map(({ name, url, icon }) => (
+					<a href={url} class='text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white flex items-center gap-2'>
+						<Fragment set:html={icon} />
+						<span>{name}</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</section>

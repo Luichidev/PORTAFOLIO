@@ -1,0 +1,20 @@
+---
+import { socialLinks } from '@/data/socialLinks'
+---
+
+<footer id='contact' class='dark:bg-transparent py-20'>
+	<div class='max-w-4xl mx-auto px-4 text-center'>
+		<div class='flex justify-center space-x-6'>
+			{
+				socialLinks.map(({ name, url, icon }) => (
+					<a href={url} class='text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors' target='_blank' rel='noopener noreferrer'>
+						<span class='sr-only'>{name}</span>
+						<Fragment set:html={icon} />
+					</a>
+				))
+			}
+		</div>
+
+		<div class='mt-8 text-gray-600 dark:text-gray-400 text-sm'>¡Mi hijo Luis ❤️ es mi inspiración!</div>
+	</div>
+</footer>
