@@ -6,32 +6,33 @@ export interface Props {
 const { text } = Astro.props
 ---
 
-<span class='tech-pill inline-block px-4 py-2 rounded-full text-sm text-gray-600 dark:text-white bg-gray-200/50 dark:bg-white/10 m-2 border-1 border-gray-200'>
-	{text}
-</span>
+<div class='tech-pill flex items-center px-4 py-2 rounded-full text-sm text-gray-600 dark:text-white bg-gray-200/50 dark:bg-white/10 m-2 gap-2 border-1 border-gray-200'>
+	<img src={`/svg/${text}.svg`} alt={text} width='30' height='30' loading='lazy' class='h-7 w-auto object-contain transition-transform group-hover:scale-110 opacity-60' />
+	<span>{text}</span>
+</div>
 
 <style>
 	.tech-pill {
 		animation: float 3s ease-in-out infinite;
 	}
 
-	span:nth-child(2) {
+	.tech-pill:nth-child(2) {
 		animation-delay: 200ms;
 	}
 
-	span:nth-child(3) {
+	.tech-pill:nth-child(3) {
 		animation-delay: 400ms;
 	}
 
-	span:nth-child(4) {
+	.tech-pill:nth-child(4) {
 		animation-delay: 600ms;
 	}
 
-	span:nth-child(5) {
+	.tech-pill:nth-child(5) {
 		animation-delay: 800ms;
 	}
 
-	span:nth-child(6) {
+	.tech-pill:nth-child(6) {
 		animation-delay: 200ms;
 	}
 
