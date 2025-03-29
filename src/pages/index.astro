@@ -4,13 +4,10 @@ import Navigation from '@/components/Navigation.astro'
 import Hero from '@/components/Hero.astro'
 import ExperienceCard from '@/components/ExperienceCard.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
-import Badge from '@/components/Badge.astro'
 import Footer from '@/components/Footer.astro'
 import { experiences } from '@/data/experiences'
 import { projects } from '@/data/projects'
-
-// Datos de tecnologías
-const badges = ['astro', 'Bootstrap', 'C Sharp', 'TailwindCSS', 'react', 'vue', 'git', 'nodejs', 'HTML5', 'CSS3', 'PHP', 'vercel', 'javaScript', 'typeScript', 'MongoDB', 'mysql', 'jquery']
+import Technologies from '@/components/Technologies.astro'
 ---
 
 <Layout title='Portfolio de Luis Alberto - Desarrollador Frontend'>
@@ -36,15 +33,8 @@ const badges = ['astro', 'Bootstrap', 'C Sharp', 'TailwindCSS', 'react', 'vue', 
 				</div>
 			</div>
 		</section>
-
 		<!-- Technologies & Quote -->
-		<section class='text-center max-w-3xl mx-auto mt-20 mb-5 dark:bg-transparent'>
-			<div class='flex flex-wrap justify-center gap-2 my-12'>
-				{badges.map((badge) => <Badge text={badge} />)}
-			</div>
-			<p class='text-gray-600 dark:text-gray-400 italic'>"Ayudo a Startups y a empresas a establecer una conexión emocional entre sus productos y clientes felices y comprometidos."</p>
-		</section>
-
+		<Technologies />
 		<!-- Footer -->
 		<Footer />
 	</main>
