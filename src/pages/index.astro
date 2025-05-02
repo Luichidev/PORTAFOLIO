@@ -5,7 +5,6 @@ import Hero from '@/components/Hero.astro'
 import ExperienceCard from '@/components/ExperienceCard.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
 import Footer from '@/components/Footer.astro'
-import { experiences } from '@/data/experiences'
 import { projects } from '@/data/projects'
 import Technologies from '@/components/Technologies.astro'
 ---
@@ -17,12 +16,7 @@ import Technologies from '@/components/Technologies.astro'
 		<Hero />
 
 		<!-- Experience Section -->
-		<section id='experience' class='min-h-screen dark:bg-transparent p-8'>
-			<div class='max-w-4xl mx-auto'>
-				<h2 class='text-3xl font-bold mb-8 dark:text-white'>Experiencia</h2>
-				{experiences.map((experience) => <ExperienceCard {...experience} />)}
-			</div>
-		</section>
+		<ExperienceCard />
 
 		<!-- Projects Section -->
 		<section id='projects' class='min-h-screen dark:bg-transparent p-8'>
