@@ -21,7 +21,7 @@ export const projects = [
 		title: 'Simona',
 		description: 'Desarrollo y depuración',
 		image: 'simona.jpg',
-		link: '#'
+		link: '/'
 	},
 	{
 		title: 'Metro-Electonica',
