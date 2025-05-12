@@ -69,10 +69,16 @@ const menuItems = [
 
 		// Handle theme toggle
 		themeToggle?.addEventListener('click', () => {
+			localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 			document.querySelector('nav').classList.toggle('dark')
 			document.documentElement.classList.toggle('dark')
-			localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 		})
+
+		// if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+		if (localStorage.theme === 'light') {
+			document.querySelector('nav').classList.toggle('dark')
+			document.documentElement.classList.toggle('dark')
+		}
 	})
 </script>
 
